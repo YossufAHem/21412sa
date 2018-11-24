@@ -1,5 +1,15 @@
-const Discord = require("discord.js");
+const Discord = require('discord.js');
 const client = new Discord.Client();
+const convert = require("hh-mm-ss")
+const dateFormat = require('dateformat');
+const fs = require('fs');
+const pretty = require('pretty-ms');
+const rn = require('random-number');
+const moment = require('moment');
+const Canvas = require('canvas')
+const jimp = require('jimp')
+const sql = require('sqlite')
+const ytdl = require("ytdl-core");
 
 function clean(text) {
     if (typeof(text) === "string")
