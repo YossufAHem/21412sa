@@ -224,8 +224,7 @@ client.on('guildMemberAdd', member => {
 
 
 
- const data = JSON.parse(fs.readFileSync('./data.json', 'utf8'));
-  let banse = new Set();
+
   client.on('guildBanAdd', function(guild) {
     guild.fetchAuditLogs().then(logs => {
       const ser = logs.entries.first().executor;
