@@ -10,7 +10,7 @@ const Canvas = require('canvas')
 const jimp = require('jimp')
 const sql = require('sqlite')
 const ytdl = require("ytdl-core");
-
+const prefix = "-"
 function clean(text) {
     if (typeof(text) === "string")
       return text.replace(/`/g, "`" + String.fromCharCode(8203)).replace(/@/g, "@" + String.fromCharCode(8203));
