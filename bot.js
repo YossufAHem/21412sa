@@ -10,6 +10,8 @@ const Canvas = require('canvas')
 const jimp = require('jimp')
 const sql = require('sqlite')
 const ytdl = require("ytdl-core");
+const antispam = require("anti-spam");
+
 function clean(text) {
     if (typeof(text) === "string")
       return text.replace(/`/g, "`" + String.fromCharCode(8203)).replace(/@/g, "@" + String.fromCharCode(8203));
@@ -223,32 +225,18 @@ client.on('guildMemberAdd', member => {
 
 });
 
-client.on('message', message => {
-if (message.content.split(' ')[0] == '-bc')
- message.guild.members.forEach( member => {
-         if (!message.member.hasPermission("CONNECT"))  return;
-member.send( ${member} ! + "" + message.guild.name + " :  " + message.content.substr(3));
-                                                            message.delete();
-});
+
+antispam(client, {
+  warnBuffer: 3, //الحد الأقصى المسموح به من الرسائل لإرسالها في الفاصل الزمني قبل الحصول على تحذير.
+  maxBuffer: 5, // الحد الأقصى المسموح به من الرسائل لإرسالها في الفاصل الزمني قبل الحصول على ميوت.
+  interval: 1000, // مقدار الوقت قبل حصول باند
+  warningMessage: "stop spamming.", // رسالة تحذير اذا سوا سبام!
+  roleMessage: "Muted!!", // الرسالة الي تجي اذا شخص اخذ ميوت
+  roleName: "Muted", // اسم رتبة الميوت
+  maxDuplicatesWarning: 7, // عدد الرسايل الي قبل التحذيرات
+  maxDuplicatesBan: 10, // عدد الرسايل الي يقدر المستخدم يرسلها قبل الميوت
+  time: 10, // عدد الوقت الي يجلس لين تسحب رتبة الميوت من الشخص الحسبة برمجية وليست كتابية 
 });
 
-
-client.on("message", message => {
-    var prefix = "-";
- 
-            var args = message.content.substring(prefix.length).split(" ");
-            if (message.content.startsWith(prefix + "bc")) {
-                         if (!message.member.hasPermission("CONNECT"))  return;
-                            let embed4 = new Discord.RichEmbed()
-             .setDescription("white_check_mark | جاري ارسال البرودكاست")
-           .addField("مرسل البرودكاست" , message.author)
-          .addField("نص البرودكاست" ,args.join("  "))
-                            .addField("عدد الاعضاء المرسل لهم busts_in_silhouette" ,**[${message.guild.memberCount}]**,true)
-                                                            .setColor("#008000")
-                                message.channel.sendEmbed(embed4);
-                                                      message.delete();
-                            
-                          }
-});
 
 client.login(process.env.BOT_TOKEN);
