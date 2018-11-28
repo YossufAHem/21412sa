@@ -329,4 +329,35 @@ client.on("guildMemberAdd", member => {
 }).catch(console.error)
 })
 
+
+client.on('ready', () => {
+	console.log('I am ready!'); 
+  });
+
+client.on('message', message => {
+var prefix = "-";
+      if(message.content === prefix + "hchannel") {
+      if(!message.channel.guild) return;
+      if(!message.member.hasPermission('ADMINISTRATOR')) return message.reply('You Dont Have Perms :x:');
+             message.channel.overwritePermissions(message.guild.id, {
+             READ_MESSAGES: false
+ })
+              message.channel.send('Channel Hided Successfully ! :white_check_mark:  ')
+ }
+});
+
+
+client.on('message', message => {
+var prefix = "-";
+      if(message.content === prefix + "schannel") {
+      if(!message.channel.guild) return;
+      if(!message.member.hasPermission('ADMINISTRATOR')) return message.reply(':x:');
+             message.channel.overwritePermissions(message.guild.id, {
+             READ_MESSAGES: true
+ })
+              message.channel.send('Done  ')
+ }
+});
+
+
 client.login(process.env.BOT_TOKEN);
