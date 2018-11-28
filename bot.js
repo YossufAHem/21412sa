@@ -37,7 +37,7 @@ client.on("message", (message) => {
 `)
     .addField(`Invite`, `[${prefix}Invites]() > **لمعرفة كام دخلت اشخاص**\n[${prefix}invite-codes]() > **لمعرفة اكواد الني صنعطها**
 `)
-    .addField(`Other`, `[${prefix}help]() > **يظهر لك هذه القائمة تعليمات القراءة الخاصة بك**\n[${prefix}ping]() **قم بتدوير البرنامج لمعرفة المدة التي يستغرقها التفاعل**\n[${prefix}about]() > **يخبركم كل شيء**`)
+    .addField(`Other`, `[${prefix}hchannel]() > **اخفاء الشات**\n[${prefix}schannel]() **اضهار الشات المخفية**\n[${prefix}ping]() > **قم بتدوير البرنامج لمعرفة المدة التي يستغرقها التفاعل**\n[${prefix}mute]() > **@user <reason> | اعطاء العضو ميوت لازم رتبة <Muted>**\n[${prefix}unmute]() > **@user | لفك الميوت عن الشخص**\n[${prefix}mutechannel]() > **تقفيل الشات**\n[${prefix}unmutechannel]() > **فتح الشات**\n[${prefix}kick]() > **@user <reason> | طرد الشخص من السيرفر**\n[${prefix}ban]() > **@user <reason> | حضر الشخص من السيرفر	**\n[${prefix}bc]() > **رسالة جماعية الى كل اعضاء السيرفر**`)
     message.channel.send({ embed: embed });
   }
 
