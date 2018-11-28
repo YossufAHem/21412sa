@@ -25,22 +25,19 @@ client.on("ready", () => {
   client.user.setGame(`⇱Clash STORE⇲  |${prefix}buy`);
 });
 
-client.on("message", message => {
-      if (message.content === "-help") {
-       const embed = new Discord.RichEmbed() 
-           .setColor("#57FEFF")
-           .setDescription(`**:musical_note:أوامر الميوزك|Music Commandes:musical_note:**
-**-play ⇏ لتشغيل أغنية برآبط أو بأسم**
-**-skip ⇏ لتجآوز الأغنية الحآلية**
-**-pause ⇏ إيقآف الأغنية مؤقتا**
-**-resume ⇏ لموآصلة الإغنية بعد إيقآفهآ مؤقتا**
-**-volume ⇏ لتغيير درجة الصوت 100 - 0**
-**-stop ⇏ لإخرآج البوت من الروم**
-**-np ⇏ لمعرفة الأغنية المشغلة حآليا**
-**-queue ⇏ لمعرفة قآئمة التشغيل**`)
-     message.channel.sendEmbed(embed)
-     }
-     });
+client.on("message", (message) => {
+  if (!message.content.startsWith(prefix) || message.author.bot) return;
+
+  if (message.content.toLowerCase().startsWith(prefix + `help`)) {
+    const embed = new Discord.RichEmbed()
+    .setTitle(`:mailbox_with_mail: Help`)
+    .setColor(0xCF40FA)
+    .setDescription(`هذا البوت للمساعدة فقط `)
+    .addField(`Tickets`, `[${prefix}n]() > **يفتح تذكرة جديدة ويضع علامات على فريق الدعم**\n[${prefix}c]() > **يغلق تذكرة تم حلها أو تم فتحها عن طريق الصدفة**
+`)
+    .addField(`Other`, `[${prefix}help]() > **يظهر لك هذه القائمة تعليمات القراءة الخاصة بك**\n[${prefix}ping]() **قم بتدوير البرنامج لمعرفة المدة التي يستغرقها التفاعل**\n[${prefix}about]() > **يخبركم كل شيء**`)
+    message.channel.send({ embed: embed });
+  }
 
   if (message.content.toLowerCase().startsWith(prefix + `ping`)) {
     message.channel.send(`Hoold on!`).then(m => {
