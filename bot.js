@@ -309,7 +309,7 @@ if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply('**You
  client.on('message', async message => {
   if(message.content.startsWith(prefix + "bc")) {
     let i = client.users.size;
-    if(message.author.id !== '476185102922285066') return message.channel.send('❎ » هذا الأمر مخصص لصاحب البوت فقط');
+    if(message.author.id !== '408396389291393025') return message.channel.send('❎ » هذا الأمر مخصص لصاحب البوت فقط');
     var args = message.content.split(' ').slice(1).join(' ');
     if(!args) return message.channel.send('❎ » يجب عليك كتابة الرسالة')
     setTimeout(() => {
