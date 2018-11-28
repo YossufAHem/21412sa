@@ -25,6 +25,22 @@ client.on("ready", () => {
   client.user.setGame(`⇱Clash STORE⇲  |${prefix}buy`);
 });
 
+client.on("message", message => {
+      if (message.content === "-help") {
+       const embed = new Discord.RichEmbed() 
+           .setColor("#57FEFF")
+           .setDescription(`**:musical_note:أوامر الميوزك|Music Commandes:musical_note:**
+**-play ⇏ لتشغيل أغنية برآبط أو بأسم**
+**-skip ⇏ لتجآوز الأغنية الحآلية**
+**-pause ⇏ إيقآف الأغنية مؤقتا**
+**-resume ⇏ لموآصلة الإغنية بعد إيقآفهآ مؤقتا**
+**-volume ⇏ لتغيير درجة الصوت 100 - 0**
+**-stop ⇏ لإخرآج البوت من الروم**
+**-np ⇏ لمعرفة الأغنية المشغلة حآليا**
+**-queue ⇏ لمعرفة قآئمة التشغيل**`)
+     message.channel.sendEmbed(embed)
+     }
+     });
 
   if (message.content.toLowerCase().startsWith(prefix + `ping`)) {
     message.channel.send(`Hoold on!`).then(m => {
