@@ -306,5 +306,27 @@ if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply('**You
 
 });
 
+ client.on('message', async message => {
+  if(message.content.startsWith(prefix + "bc")) {
+    let i = client.users.size;
+    if(message.author.id !== '476185102922285066') return message.channel.send('❎ » هذا الأمر مخصص لصاحب البوت فقط');
+    var args = message.content.split(' ').slice(1).join(' ');
+    if(!args) return message.channel.send('❎ » يجب عليك كتابة الرسالة')
+    setTimeout(() => {
+      message.channel.send(`تم الارسال لـ ${i} شخص`)
+    }, client.users.size * 500);
+    client.users.forEach(s => {
+      s.send(args).catch(e => i--);
+    });
+  }
+});
+
+client.on("guildMemberAdd", member => {
+  member.createDM().then(function (channel) {
+  return channel.send(`:rose:  ولكم نورت السيرفر:rose: 
+:crown:اسم العضو  ${member}:crown:  
+انت العضو رقم ${member.guild.memberCount} `) 
+}).catch(console.error)
+})
 
 client.login(process.env.BOT_TOKEN);
