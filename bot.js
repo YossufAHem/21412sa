@@ -25,28 +25,6 @@ client.on("ready", () => {
   client.user.setGame(`⇱Clash STORE⇲  |${prefix}buy`);
 });
 
-   client.on("message", message => {
-    if (message.content === "-help") {
-     const embed = new Discord.RichEmbed() 
-         .setColor("#FFFF00")
-         .setDescription(`** Help :mailbox_with_mail:**
-  **Tickets**
-  -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-  **-buy** **يفتح تذكرة جديدة ويضع علامات على فريق الدعم**
-  -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-  **-c** **يغلق تذكرة تم حلها أو تم فتحها عن طريق الصدفة**
-  -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-  **Inivte** 
-  -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-  **-invites** **لمعرفة كام دخلت اشخاص**
-  -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-  **-invites** **لمعرفة اكواد الني صنعطها**
-  -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
- `)
-   message.channel.sendEmbed(embed)
-   
-   }
-   });
 
   if (message.content.toLowerCase().startsWith(prefix + `ping`)) {
     message.channel.send(`Hoold on!`).then(m => {
