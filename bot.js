@@ -22,7 +22,7 @@ const prefix = "-";
 
 client.on("ready", () => {
   console.log("Vulnix | Logged in! Server count: ${client.guilds.size}");
-  client.user.setGame(`⇱Clash STORE⇲  |${prefix}buy`);
+  client.user.setGame(`ART Group |${prefix}buy`);
 });
 
 client.on("message", (message) => {
