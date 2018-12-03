@@ -109,7 +109,7 @@ client.on('ready', () => {
         });
     });
 });
-client.on('guildMemberAdd', member => {
+client.on('guildMemberAdd', async function(member) {
     var embed = new Discord.RichEmbed()
     .setAuthor(member.user.username, member.user.avatarURL)
     .setColor("#1E0606")
