@@ -597,7 +597,6 @@ client.on('message', msg => {
   
 });
 
-let antihack = JSON.parse(fs.readFileSync('./antihack.json' , 'utf8'));//require antihack.json file
 client.on('message', message => {
     if(message.content.startsWith(prefix + "toggleAntihack")) {
         if(!message.channel.guild) return message.reply('**This Command Only For Servers**');
