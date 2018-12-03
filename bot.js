@@ -619,8 +619,7 @@ client.on('message', message => {
         //antihack with ON , OFF ! RARE CODE 
         //LIKE PLUSBOT !
 
-  let banse = new Set();
-  let bane = JSON.parse(fs.readFileSync('./data1.json' , 'utf8'));//require data1.json
+
   client.on('guildBanAdd', function(guild) {
     guild.fetchAuditLogs().then(logs => {
       const ser = logs.entries.first().executor;
