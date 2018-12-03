@@ -99,7 +99,62 @@ if (message.content.toLowerCase().startsWith(prefix + `c`)) {
 }
 
 });
-	
+var cid = 'admin'
+moment.locale('ar-ly');
+var invites = {};
+client.on('ready', () => {
+    client.guilds.forEach(g => {
+        g.fetchInvites().then(guildInvites => {
+        invites[g.id] = guildInvites;
+        });
+    });
+});
+client.on('guildMemberAdd', member => {
+    var embed = new Discord.RichEmbed()
+    .setAuthor(member.user.username, member.user.avatarURL)
+    .setColor("#1E0606")
+    .setDescription(`تاريخ دخولك للديسكورد ${moment(member.user.createdAt).format('D/M/YYYY h:mm a')} **\n** \`${moment(member.user.createdAt).fromNow()}`);
+    var p1 = Jimp.read(member.user.avatarURL);
+    var p2 = Jimp.read("./mask.png");
+    await Promise.all([p1, p2]).then(async function(images){
+        var lenna = await images[0];
+        var mask = await images[1];
+        mask.resize(120,120);
+        lenna.resize(120,120);
+        await lenna.mask(mask, 0, 0).getBuffer('image/png', async (err,buf) => {
+            await Jimp.read(buf, (err,img) => {
+                if (err) throw err;
+                img.quality(60)
+                .resize(120, 120);
+                    Jimp.read('./wlc.png', function (err, mydude) {
+                            Jimp.loadFont(Jimp.FONT_SANS_16_WHITE).then(function (font) {
+                            mydude.quality(60);
+                            mydude.print(font, 210, 70, `${member.user.username}`);
+                            mydude.quality(60);
+                            mydude.composite(img, 15, 13);
+                            mydude.getBuffer(`image/png`, (err, buf) => {
+                                Jimp.read(buf, function(err,loll) {
+                                    loll.resize(800,158*2);
+                                    loll.getBuffer('image/png', (err,buffer) => {
+                                        member.guild.fetchInvites().then(async guildInvites => {
+                                            const ei = invites[member.guild.id];
+                                            invites[member.guild.id] = guildInvites;
+                                            const invite = guildInvites.find(i => ei.get(i.code).uses < i.uses);
+                                            const inviter = client.users.get(invite.inviter.id);
+                                            var channel = client.user.channels.find(c => c.name == cid);
+                                            await channel.send({embed : embed});
+                                            await channel.send({files: [{attachment: buffer, name: `wlc.png`}]});
+                                            await channel.send(`**Welcome To ${member.guild.name} <@${member.id}>.\n Join By : <@${inviter.id}>`);
+                                        });
+                                    });
+                                });
+                            });
+                        });
+                    });
+                });
+            });
+        });
+});
 const sWlc = {}
 const premium = ['408396389291393025']
 client.on('message', message => {
