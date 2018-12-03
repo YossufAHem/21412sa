@@ -25,7 +25,7 @@ client.on("ready", () => {
   client.user.setGame(`ART Group |${prefix}buy`);
 });
 
-client.on("message", (message) => {
+client.on("message",async(message) => {
   if (!message.content.startsWith(prefix) || message.author.bot) return;
 
   if (message.content.toLowerCase().startsWith(prefix + `help`)) {
