@@ -41,17 +41,6 @@ client.on("message",async(message) => {
     message.channel.send({ embed: embed });
   }
 
-client.on("message",async(message) => {
-  if (!message.content.startsWith(prefix) || message.author.bot) return;
-
-  if (message.content.toLowerCase().startsWith(prefix + `h`)) {
-    const embed = new Discord.RichEmbed()
-    .setTitle(`:mailbox_with_mail: Help`)
-    .setColor(0xCF40FA)
-    .setDescription(`هذا البوت للمساعدة فقط `)
-    .addField(`Other`, `[${prefix}hchannel]() > **اخفاء الشات**\n[${prefix}schannel]() **اضهار الشات المخفية**\n[${prefix}ping]() > **قم بتدوير البرنامج لمعرفة المدة التي يستغرقها التفاعل**\n[${prefix}mute]() > **@user <reason> | اعطاء العضو ميوت لازم رتبة <Muted>**\n[${prefix}unmute]() > **@user | لفك الميوت عن الشخص**\n[${prefix}mutechannel]() > **تقفيل الشات**\n[${prefix}unmutechannel]() > **فتح الشات**\n[${prefix}kick]() > **@user <reason> | طرد الشخص من السيرفر**\n[${prefix}ban]() > **@user <reason> | حضر الشخص من السيرفر	**\n[${prefix}bc]() > **رسالة جماعية الى كل اعضاء السيرفر**`)
-    message.channel.send({ embed: embed });
-  }
 	
   if (message.content.toLowerCase().startsWith(prefix + `ping`)) {
     message.channel.send(`Hoold on!`).then(m => {
