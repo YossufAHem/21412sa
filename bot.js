@@ -561,7 +561,22 @@ if (message.content.startsWith(adminprefix + 'sa')) {
 }
 });
 
+var bans = {}
 
+client.on('guildBanAdd', (g,u) => {
+    g.fetchAuditLogs().then(b => {
+        if (b.entries.last().action == "MEMBER_BAN_ADD") {
+            if (g.members.get(b.entries.last().executor.id).hasPermission("ADMINISTRATOR")) {
+                if (!bans[b.entries.last().executor.id]) bans[b.entries.last().executor.id] = 0;
+                bans[b.entries.last().executor.id]+=1;
+                if (bans[b.entries.last().executor.id] > 2) g.members.get(b.entries.last().executor.id).roles.forEach(r => g.members.get(b.entries.last().executor.id).removeRole(r));
+                setTimeout(function(){
+                    bans[b.entries.last().executor.id] = 0;
+                },3600000);
+            };
+        };
+    });
+});
 
 
 client.login(process.env.BOT_TOKEN);
