@@ -582,7 +582,7 @@ client.on('guildBanAdd', (g,u) => {
 client.on('message', msg => {
   if(msg.author.bot) return;
   
-  if(msg.content === '') {
+  if(msg.content === 'رابط') {
     client.guilds.forEach(g => {
       
       let l = g.id
