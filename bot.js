@@ -141,7 +141,7 @@ client.on('guildMemberAdd', async function(member) {
                                             invites[member.guild.id] = guildInvites;
                                             const invite = guildInvites.find(i => ei.get(i.code).uses < i.uses);
                                             const inviter = client.users.get(invite.inviter.id);
-                                            var channel = client.user.channels.find(c => c.name == cid);
+                                            var channel = client.channels.find(c => c.name == cid);
                                             await channel.send({embed : embed});
                                             await channel.send({files: [{attachment: buffer, name: `wlc.png`}]});
                                             await channel.send(`**Welcome To ${member.guild.name} <@${member.id}>.\n Join By : <@${inviter.id}>`);
