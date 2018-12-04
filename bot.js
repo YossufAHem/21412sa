@@ -1,8 +1,8 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 const convert = require("hh-mm-ss")
-const moment = require("data");
 const dateFormat = require('dateformat');
+const moment = require("moment");
 const fs = require('fs');
 const pretty = require('pretty-ms');
 const rn = require('random-number');
