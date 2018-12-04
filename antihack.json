@@ -1,1 +1,0 @@
-let antihack = JSON.parse(fs.readFileSync('./antihack.json' , 'utf8'));
