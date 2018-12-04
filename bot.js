@@ -597,12 +597,9 @@ client.on('message', msg => {
   
 });
 
-client.on('guildMemberAdd', member=> {
-    member.addRole(member.guild.roles.find("name","2.K"));
-    });
-
+let antihack = JSON.parse(fs.readFileSync('./antihack.json' , 'utf8'));//require antihack.json file
 client.on('message', message => {
-    if(message.content.startsWith(prefix + "Antihack")) {
+    if(message.content.startsWith(prefix + "toggleAntihack")) {
         if(!message.channel.guild) return message.reply('**This Command Only For Servers**');
         if(!message.member.hasPermission('MANAGE_GUILD')) return message.channel.send('**Sorry But You Dont Have Permission** `MANAGE_GUILD`' );
         if(!antihack[message.guild.id]) antihack[message.guild.id] = {
@@ -747,5 +744,7 @@ client.on('message', message => {
       fs.writeFile("./data.json", JSON.stringify(data) ,(err) =>{
           if (err) console.log(err.message);
       });
-  });
+  })
+
+
 client.login(process.env.BOT_TOKEN);
