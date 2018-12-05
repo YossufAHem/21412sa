@@ -82,7 +82,7 @@ if (message.content.toLowerCase().startsWith(prefix + `c`)) {
 
     message.channel.send(`Are you sure? Once confirmed, you cannot reverse this action!\nTo confirm, type \`-confirm\`. This will time out in 10 seconds and be cancelled.`)
     .then((m) => {
-      message.channel.awaitMessages(response => response.content === '-confirm', {
+      message.channel.awaitMessages(response => response.content === '-art', {
         max: 1,
         time: 10000,
         errors: ['time'],
