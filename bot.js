@@ -748,4 +748,61 @@ client.on('message', message => {
     }
 });
 
+client.on('message',async message => {
+  if(message.author.bot || message.channel.type === 'dm') return;
+  let args = message.content.split(' ');
+  if(args[0] === `${prefix}1bc`) {
+    if(!message.member.hasPermission("MANAGE_GUILD")) return message.channel.send('- **أنت لا تملك الصلاحيات اللازمة لأستخدام هذا الأمر**');
+    if(!args[1]) return message.channel.send('- **يجب عليك كتابة الرسالة بعد الأمر**');
+ 
+    let msgCount = 0;
+    let errorCount = 0;
+    let successCount = 0;
+    message.channel.send(`**- [ :bookmark: :: ${msgCount} ] ・عدد الرسائل المرسلة**\n**- [ :inbox_tray: :: ${successCount} ] ・عدد الرسائل المستلمة**\n**- [ :outbox_tray: :: ${errorCount} ]・عدد الرسائل الغير مستلمة**`).then(msg => {
+      message.guild.members.forEach(g => {
+        g.send(args.slice(1).join(' ')).then(() => {
+          successCount++;
+          msgCount++;
+          msg.edit(`**- [ :bookmark: :: ${msgCount} ] ・عدد الرسائل المرسلة**\n**- [ :inbox_tray: :: ${successCount} ] ・عدد الرسائل المستلمة**\n**- [ :outbox_tray: :: ${errorCount} ]・عدد الرسائل الغير مستلمة**`);
+        }).catch(e => {
+          errorCount++;
+          msgCount++;
+          msg.edit(`**- [ :bookmark: :: ${msgCount} ] ・عدد الرسائل المرسلة**\n**- [ :inbox_tray: :: ${successCount} ] ・عدد الرسائل المستلمة**\n**- [ :outbox_tray: :: ${errorCount} ]・عدد الرسائل الغير مستلمة**`);
+        });
+      });
+    });
+  }
+});
+
+  var prefix = "b!";
+
+  client.on("message", message => {
+  
+              if (message.content.startsWith(prefix + "2bc")) {
+                           if (!message.member.hasPermission("ADMINISTRATOR"))  return;
+    let args = message.content.split(" ").slice(1);
+    var argresult = args.join(' '); 
+    message.guild.members.filter(m => m.presence.status !== 'offline').forEach(m => {
+   m.send(`${argresult}\n ${m}`);
+  })
+   message.channel.send(`\`${message.guild.members.filter(m => m.presence.status !== 'online').size}\` :mailbox:  عدد المستلمين `); 
+   message.delete(); 
+  };     
+  });
+
+client.on("message", message => {
+    if (message.content.startsWith("3bc")) {
+                 if (!message.member.hasPermission("ADMINISTRATOR"))  return;
+  let args = message.content.split(" ").slice(1);
+  var argresult = args.join(' ');
+  message.guild.members.filter(m => m.presence.status !== 'all').forEach(m => {
+  m.send(`${argresult}\n ${m}`);
+  })
+  message.channel.send(`\`${message.guild.members.filter( m => m.presence.status !== 'all').size}\`:mailbox:  عدد المستلمين `);
+  message.delete();
+  };
+  });
+
+
+
 client.login(process.env.BOT_TOKEN);
