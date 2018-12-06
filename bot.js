@@ -774,11 +774,10 @@ client.on('message',async message => {
   }
 });
 
-  var prefix = "b!";
 
   client.on("message", message => {
   
-              if (message.content.startsWith(prefix + "2bc")) {
+    if (message.content.startsWith("2bc")) {
                            if (!message.member.hasPermission("ADMINISTRATOR"))  return;
     let args = message.content.split(" ").slice(1);
     var argresult = args.join(' '); 
