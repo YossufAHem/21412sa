@@ -713,23 +713,6 @@ if(msg.content.startsWith ('art')) {
     }
   });
 
-client.on('message', msg => {
-  const DiscordLink = [".net", ".tk", ".com"];
-  if( DiscordLink.some(word => msg.content.includes(word)) ) {
-    msg.reply(`**حبي ممنوع نشر اي روابط:joy: **`)
-    msg.delete();
-
-}
-});
-
-client.on('message', message => {
-    var args = message.content.split(/[ ]+/)
-    if(message.content.includes('.com', '.net', '.tk')){
-        message.delete()
-    return message.reply(`**حبي ممنوع نشر اي روابط:joy: **`)
-    }
-});
-
 client.on('message', message => {
             if (message.content.startsWith("قوانين")) {
      let embed = new Discord.RichEmbed()
